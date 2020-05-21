@@ -26,11 +26,9 @@ class RealmManager {
             if Array(getDataFromDB()).contains(where: { (storedObject) -> Bool in
                 storedObject.id == result.id
             }) {
-                print("val exists")
             } else {
                 try! realm.write {
                     realm.add(object, update: .modified)
-                    print("Added new object")
                 }
             }
         }

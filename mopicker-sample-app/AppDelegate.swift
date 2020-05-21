@@ -13,8 +13,6 @@ import AppsFlyerLib
 import SDWebImageSwiftUI
 
 
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let googleSignIn = GoogleAuthService.googleSignIn
