@@ -12,7 +12,7 @@ import RealmSwift
 
 final class MainViewModel: ObservableObject {
     
-    @Published var moviesByGenre = Array(RealmManager.shared.getDataFromDB()) {
+    @Published var moviesByGenre = [Result]() {
         didSet {
             didCange.send(self)
         }
@@ -33,19 +33,20 @@ final class MainViewModel: ObservableObject {
     }
     
     @discardableResult
-    private func shouldLoadMoreMovies() -> Bool {
-        if currentlyLoading {
-            return false
+    func shouldLoadMoreMovies(currentItem: Result) -> Bool {
+        guard let lastItem = filterMoviesByGenre().last else {
+            return true
         }
-        return true
+        
+        return lastItem.id == currentItem.id
     }
     
-    private func loadMoreMovies() {
-        if !shouldLoadMoreMovies() {
+    func loadMoreMovies(currentItem: Result) {
+        if !shouldLoadMoreMovies(currentItem: currentItem) {
             return
         }
         currentlyLoading = true
-        showGenreMovies(id: genreID)
+        fetchListsByGenre(id: self.genreID)
     }
     
     
@@ -56,20 +57,28 @@ final class MainViewModel: ObservableObject {
         }
         
         let url = ConstantNamespaces.moviesByGenreURL + String(genreID) + ConstantNamespaces.pageParameter + String(pageToLoad)
+        print(url)
         networkingManager.requestAPIData(url, model: TrendVideos.self) { [weak self] (result) in
             DispatchQueue.main.async { [weak self] in
                 RealmManager.shared.addData(object: result.results)
                 self?.pageToLoad += 1
                 self?.currentlyLoading = false
-                self?.shouldLoadMoreMovies()
+                self?.showGenreMovies(id: self?.genreID ?? 0)
             }
         }
     }
     
     func showGenreMovies(id: Int) {
-        self.genreID = id
-        self.fetchListsByGenre(id: genreID)
-        self.moviesByGenre = Array(RealmManager.shared.getDataFromDB()).filter { ($0.genreIDS).contains(genreID)}
+        genreID = id
+        moviesByGenre = filterMoviesByGenre()
+        
+        if moviesByGenre.count == 0 {
+            fetchListsByGenre(id: id)
+        }
+    }
+    
+    private func filterMoviesByGenre() -> [Result] {
+        return Array(RealmManager.shared.getDataFromDB()).filter { ($0.genreIDS).contains(genreID)}
     }
 }
 

@@ -30,8 +30,8 @@ struct CategoriesView: View  {
                     .padding(5)
                     }).border(Color.gray).cornerRadius(2)
                 }
-                .shadow(color: Color.gray, radius: 5)
+                .shadow(color: Color.gray, radius: 10)
             }.frame(height: 50)
-            }).padding(5)
+            })
     }
 }

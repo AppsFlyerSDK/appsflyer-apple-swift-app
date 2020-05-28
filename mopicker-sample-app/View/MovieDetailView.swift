@@ -43,6 +43,6 @@ struct MovieDescriptionView: View {
                 .padding(5)
                 .multilineTextAlignment(.leading)
             Divider().padding(.horizontal, 15)
-        }
+        }.navigationBarTitle(movieDescription?.title ?? "")
     }
 }

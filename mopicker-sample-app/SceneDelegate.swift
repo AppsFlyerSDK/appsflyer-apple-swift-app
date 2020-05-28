@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             
             if AppConstants.isOpenSource {
-                window.rootViewController = UIHostingController(rootView: MainView().environmentObject(MainViewModel()))
+                window.rootViewController = UIHostingController(rootView: MainView())
             } else {
                 window.rootViewController = UIHostingController(rootView: AuthView().environmentObject(FirebaseAuthService.shared))
             }

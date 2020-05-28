@@ -19,11 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        RealmManager.shared.deleteAllFromDatabase()
+        
         guard let path = Bundle.main.path(forResource: "Info", ofType: "plist") else {return true}
         let plistDict = NSDictionary(contentsOfFile: path)
 
         if AppConstants.isOpenSource {
-            AppsFlyerTracker.shared().isDebug = true
+            AppsFlyerTracker.shared().isDebug = false
         } else {
             FirebaseApp.configure()
             googleSignIn.setDelegate(delegateClass: self)

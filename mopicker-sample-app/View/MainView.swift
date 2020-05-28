@@ -21,19 +21,52 @@ struct MainViewCore: View {
             CategoriesView { (id) in
                 self.mainViewModel.showGenreMovies(id: id)
             }
-            GridView(columns: 2, items: Array(mainViewModel.moviesByGenre).filter({
-                Array($0.genreIDS).contains(mainViewModel.genreID)
-            }), content: { (width, height, item) in
-                NavigationLink(destination: MovieDetailView(viewModel: DetailViewModel(movieId: item.id , name: item.title ))) {
-                    GridCell(result: item)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(Int.max)
-                        .padding(10)
-                        .shadow(radius: 15)
-                        .frame(width: width, height: height, alignment: .center)
-                }.buttonStyle(PlainButtonStyle())
-            })
+            GeometryReader { (parentGeometry) in
+                GridView(columns: 2, items: Array(self.mainViewModel.moviesByGenre).filter({
+                    Array($0.genreIDS).contains(self.mainViewModel.genreID)
+                }), content: { (childGeo, width, height, item) in
+                    NavigationLink(destination: MovieDetailView(viewModel: DetailViewModel(movieId: item.id , name: item.title ))) {
+                            GridCell(result: item)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(Int.max)
+                            .padding(10)
+                            .shadow(radius: 15)
+                            .frame(width: width, height: height, alignment: .center)
+                                
+                        }.buttonStyle(PlainButtonStyle())
+                    .onFrameChange({ (frame) in
+                        if frame.midY - parentGeometry.frame(in: .global).midY < 600 {
+                            self.mainViewModel.loadMoreMovies(currentItem: item)
+                            print("fire off request")
+                        }
+                        print(frame.midY - parentGeometry.frame(in: .global).midY)
+                        print("PARENT: \(parentGeometry.frame(in: .global).minY), \n CHILD: \(childGeo.frame(in: .global).minY)")
+                    }, enabled: item.id == self.mainViewModel.moviesByGenre.last?.id)
+                })
+            }
         }
+    }
+}
+
+extension View {
+
+    func onFrameChange(_ frameHandler: @escaping (CGRect)->(),
+                    enabled isEnabled: Bool = true) -> some View {
+
+        guard isEnabled else { return AnyView(self) }
+
+        return AnyView(self.background(GeometryReader { (geometry: GeometryProxy) in
+
+            Color.clear.beforeReturn {
+
+                frameHandler(geometry.frame(in: .global))
+            }
+        }))
+    }
+
+    private func beforeReturn(_ onBeforeReturn: ()->()) -> Self {
+        onBeforeReturn()
+        return self
     }
 }
 

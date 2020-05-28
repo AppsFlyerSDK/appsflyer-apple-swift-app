@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct MovieImageHeader: View {
     
@@ -23,13 +24,11 @@ struct MovieImageHeader: View {
         GeometryReader { geo in
             ScrollView {
                 Group {
-                    if self.provideImageData() != nil {
-                        Image(uiImage: self.provideImageData()!)
-                                               .resizable()
-                                               .aspectRatio(contentMode: .fill)
-                                               .frame(width: geo.size.width, alignment: .top)
-                                               .overlay(TextOverlay(name: self.result?.originalTitle ?? self.result?.title ?? ""), alignment: .bottom)
-                    }
+                    WebImage(url: self.getImageURL(imageURLString: self.result?.backdropPath))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geo.size.width, alignment: .top)
+                    .overlay(TextOverlay(name: self.result?.originalTitle ?? self.result?.title ?? ""), alignment: .bottom)
                 }
                 MovieDescriptionView(movieDescription: self.result)
             }.frame(alignment: .top)
@@ -51,9 +50,14 @@ struct MovieImageHeader: View {
         return nil
     }
     
+    private func getImageURL(imageURLString: String?) -> URL? {
+        guard let imageURL = URL(string: ConstantNamespaces.requestW500Image + (imageURLString ?? "")) else { return nil }
+        return imageURL
+    }
+    
     private func shareVideo() {
         self.isShareSheetShown.toggle()
-        let av = UIActivityViewController(activityItems: [provideImageData() ?? UIImage()], applicationActivities: nil)
+                let av = UIActivityViewController(activityItems: ["Check out \(result?.title ?? "") movie, that I have found using Mopicker app.", provideImageData() ?? UIImage()], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
 }

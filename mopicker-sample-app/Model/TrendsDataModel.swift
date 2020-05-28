@@ -173,4 +173,6 @@ enum OriginalLanguage: String, Codable {
     case ru = "ru"
     case ko = "ko"
     case ja = "ja"
+    case id = "id"
+    case zh = "zh"
 }
