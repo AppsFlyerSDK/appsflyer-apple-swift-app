@@ -38,6 +38,10 @@ final class MainViewModel: ObservableObject {
             return true
         }
         
+        if currentlyLoading {
+            return false
+        }
+        
         return lastItem.id == currentItem.id
     }
     

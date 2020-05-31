@@ -35,10 +35,10 @@ struct MainViewCore: View {
                                 
                         }.buttonStyle(PlainButtonStyle())
                     .onFrameChange({ (frame) in
-                        if frame.midY - parentGeometry.frame(in: .global).midY < 600 {
+                        if frame.midY - parentGeometry.frame(in: .global).midY < 500 {
                             self.mainViewModel.loadMoreMovies(currentItem: item)
                         }
-                    }, enabled: item.id == self.mainViewModel.moviesByGenre.last?.id)
+                    }, enabled: self.mainViewModel.shouldLoadMoreMovies(currentItem: item))
                 })
             }
         }
