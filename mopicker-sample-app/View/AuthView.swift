@@ -112,6 +112,7 @@ struct SignUpView: View {
     @State var confirmedPassword: String = ""
     @State var error: String = ""
     @EnvironmentObject var session: FirebaseAuthService
+    @State var signUpSuccess = false
     
     func signUp() {
         session.signUp(email: email, password: password) { (authResult, authError) in
@@ -121,6 +122,7 @@ struct SignUpView: View {
                 self.email = ""
                 self.password = ""
                 self.confirmedPassword = ""
+                self.signUpSuccess = true
             }
         }
     }
@@ -148,13 +150,15 @@ struct SignUpView: View {
             }.padding(.vertical, 64)
             
             Button(action: signUp) {
-                Text("Create Account!")
+                NavigationLink(destination: SignInView(), isActive: $signUpSuccess) {
+                    Text("Create Account!")
                     .frame(minWidth: 0,  maxWidth: .infinity)
                     .frame(height: 50)
                     .font(.system(size: 14))
                     .foregroundColor(Color.black)
                     .background(LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue]), startPoint: .leading, endPoint: .trailing))
                     .cornerRadius(5)
+                }
             }
             
             if (!error.isEmpty) {
