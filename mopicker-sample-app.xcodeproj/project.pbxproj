@@ -41,7 +41,6 @@
 		25AA4AEA246170130004C0B7 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AA4AE9246170130004C0B7 /* Color+Extension.swift */; };
 		25AA4AEE2461B8280004C0B7 /* MovieSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AA4AED2461B8280004C0B7 /* MovieSearchView.swift */; };
 		25AA4AF02461B84E0004C0B7 /* MovieSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AA4AEF2461B84E0004C0B7 /* MovieSearchViewModel.swift */; };
-		25AA4AF22461CDC40004C0B7 /* VideoSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AA4AF12461CDC40004C0B7 /* VideoSearchModel.swift */; };
 		25AA4AF62461FBEB0004C0B7 /* View+Endediting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AA4AF52461FBEB0004C0B7 /* View+Endediting.swift */; };
 		25AA4AFA24635AFC0004C0B7 /* GoogleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AA4AF924635AFC0004C0B7 /* GoogleAuthService.swift */; };
 		25AA4AFC246361520004C0B7 /* GoogleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AA4AFB246361520004C0B7 /* GoogleButtonView.swift */; };
@@ -97,7 +96,6 @@
 		25AA4AE9246170130004C0B7 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		25AA4AED2461B8280004C0B7 /* MovieSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchView.swift; sourceTree = "<group>"; };
 		25AA4AEF2461B84E0004C0B7 /* MovieSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewModel.swift; sourceTree = "<group>"; };
-		25AA4AF12461CDC40004C0B7 /* VideoSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSearchModel.swift; sourceTree = "<group>"; };
 		25AA4AF52461FBEB0004C0B7 /* View+Endediting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Endediting.swift"; sourceTree = "<group>"; };
 		25AA4AF924635AFC0004C0B7 /* GoogleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthService.swift; sourceTree = "<group>"; };
 		25AA4AFB246361520004C0B7 /* GoogleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButtonView.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				250A472B2457479C0065317F /* MovieDataModel.swift */,
 				2598350F245860C30049278A /* TrendsDataModel.swift */,
 				2598351F245A32A30049278A /* User.swift */,
-				25AA4AF12461CDC40004C0B7 /* VideoSearchModel.swift */,
 				258FA729246B255C00AEAE9A /* GenresModel.swift */,
 			);
 			path = Model;
@@ -465,7 +462,6 @@
 				2598351A245A303A0049278A /* AuthView.swift in Sources */,
 				251000EE246BEF03001E4BCF /* CategoriesViewModel.swift in Sources */,
 				259B1E752474198C007D0BD5 /* AppConstants.swift in Sources */,
-				25AA4AF22461CDC40004C0B7 /* VideoSearchModel.swift in Sources */,
 				25AA4AFA24635AFC0004C0B7 /* GoogleAuthService.swift in Sources */,
 				256D08942464163700B2037C /* AuthManager.swift in Sources */,
 				2553C98C24504BB600BE094F /* GridCell.swift in Sources */,

@@ -19,7 +19,7 @@ struct MainViewCore: View {
     var body: some View {
         VStack {
             CategoriesView { (id) in
-                self.mainViewModel.showGenreMovies(id: id)
+                self.mainViewModel.fetchListsByGenre(id: id)
             }
             GeometryReader { (parentGeometry) in
                 GridView(columns: 2, items: Array(self.mainViewModel.moviesByGenre).filter({
@@ -37,10 +37,7 @@ struct MainViewCore: View {
                     .onFrameChange({ (frame) in
                         if frame.midY - parentGeometry.frame(in: .global).midY < 600 {
                             self.mainViewModel.loadMoreMovies(currentItem: item)
-                            print("fire off request")
                         }
-                        print(frame.midY - parentGeometry.frame(in: .global).midY)
-                        print("PARENT: \(parentGeometry.frame(in: .global).minY), \n CHILD: \(childGeo.frame(in: .global).minY)")
                     }, enabled: item.id == self.mainViewModel.moviesByGenre.last?.id)
                 })
             }

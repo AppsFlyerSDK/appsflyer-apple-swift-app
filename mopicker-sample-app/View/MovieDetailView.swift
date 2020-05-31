@@ -35,11 +35,11 @@ struct MovieDescriptionView: View {
                 Divider().frame(width:1, height: 20).background(Color.black)
                 Text(movieDescription?.releaseDate ?? "N/a")
                 Divider().frame(width:1, height: 20).background(Color.black)
-                Text(String(format: "Rating: %.2f / 10.0", movieDescription?.voteAverage ?? 0))
+                Text(String(format: "Rating: %.2f / 10.0", movieDescription?.voteAverage ?? 0)).font(.body)
             }
             Divider().padding(.horizontal, 15)
             Text(movieDescription?.overview ?? "N/a")
-                .font(.system(size: 14, weight: .light, design: .rounded))
+                .font(.system(size: 18, weight: .light, design: .default))
                 .padding(5)
                 .multilineTextAlignment(.leading)
             Divider().padding(.horizontal, 15)

@@ -69,12 +69,12 @@ final class MainViewModel: ObservableObject {
     }
     
     func showGenreMovies(id: Int) {
-        genreID = id
-        moviesByGenre = filterMoviesByGenre()
-        
         if moviesByGenre.count == 0 {
             fetchListsByGenre(id: id)
         }
+        
+        genreID = id
+        moviesByGenre = filterMoviesByGenre()
     }
     
     private func filterMoviesByGenre() -> [Result] {

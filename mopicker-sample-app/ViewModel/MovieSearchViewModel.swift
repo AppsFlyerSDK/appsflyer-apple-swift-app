@@ -19,7 +19,7 @@ class MovieSearchViewModel: ObservableObject {
         }
     }
     
-    @Published var searchResult: [SearchResult]? {
+    @Published var searchResult: [Result]? {
         didSet {
             self.didChange.send(self)
         }
@@ -33,9 +33,9 @@ class MovieSearchViewModel: ObservableObject {
         let searchURLString =  "https://api.themoviedb.org/3/search/movie?api_key=34aa242becb78580330dbb426b07379a&query=\(searchQuiery)&page=1"
         print(searchURLString)
         
-        networkingManager.requestAPIData(searchURLString, model: VideoSearch.self) { [weak self] (result) in
+        networkingManager.requestAPIData(searchURLString, model: TrendVideos.self) { [weak self] (result) in
             DispatchQueue.main.async {
-                self?.searchResult = result.results
+                self?.searchResult = Array(result.results)
             }
         }
     }

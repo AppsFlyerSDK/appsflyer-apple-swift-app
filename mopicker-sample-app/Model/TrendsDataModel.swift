@@ -50,9 +50,8 @@ import RealmSwift
     dynamic var voteAverage: Double = 0
     dynamic var title: String = ""
     dynamic var releaseDate: String = ""
-    dynamic var originalLanguage = OriginalLanguage.en.rawValue
+//    dynamic var originalLanguage = OriginalLanguage.en.rawValue
     dynamic var originalTitle: String = ""
-    //Check if this one stored to DB
     dynamic var genreIDS = List<Int>()
     dynamic var backdropPath: String = ""
     dynamic var adult: Bool = false
@@ -66,16 +65,16 @@ import RealmSwift
     dynamic var originCountry = List<String>()
     
     
-    // Need to modify getters and setters for enum objects to use them as Realm objects
-    var mediaTypes: MediaType {
-        get { return MediaType(rawValue: mediaType)! }
-        set { mediaType = newValue.rawValue }
-    }
-    
-    var languages: OriginalLanguage {
-        get { return OriginalLanguage(rawValue: originalLanguage)! }
-        set { originalLanguage = newValue.rawValue }
-    }
+//     Need to modify getters and setters for enum objects to use them as Realm objects
+//    var mediaTypes: MediaType {
+//        get { return MediaType(rawValue: mediaType)! }
+//        set { mediaType = newValue.rawValue }
+//    }
+//
+//    var languages: OriginalLanguage {
+//        get { return OriginalLanguage(rawValue: originalLanguage)! }
+//        set { originalLanguage = newValue.rawValue }
+//    }
     
     enum CodingKeys: String, CodingKey {
         case id, video
@@ -83,7 +82,6 @@ import RealmSwift
         case voteAverage = "vote_average"
         case title
         case releaseDate = "release_date"
-        case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case genreIDS = "genre_ids"
         case backdropPath = "backdrop_path"
@@ -106,7 +104,6 @@ import RealmSwift
         voteAverage = try (container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0)
         title = try (container.decodeIfPresent(String.self, forKey: .title) ?? "")
         releaseDate = try (container.decodeIfPresent(String.self, forKey: .releaseDate) ?? "")
-        originalLanguage = try (container.decodeIfPresent(OriginalLanguage.self, forKey: .originalLanguage) ?? OriginalLanguage.en).rawValue
         originalTitle = try (container.decodeIfPresent(String.self, forKey: .originalTitle) ?? "")
         genreIDS = try (container.decodeIfPresent(List<Int>.self, forKey: .genreIDS) ?? List<Int>())
         backdropPath = try (container.decodeIfPresent(String.self, forKey: .backdropPath) ?? "")
@@ -129,30 +126,6 @@ import RealmSwift
     override class func primaryKey() -> String? {
         return "id"
     }
-    
-    
-    //    init(id: Int?, video: Bool?, voteCount: Int?, voteAverage: Double?, title: String?, releaseDate: String?, originalLanguage: OriginalLanguage, originalTitle: String?, genreIDS: [Int], backdropPath: String?, adult: Bool?, overview: String?, posterPath: String?, popularity: Double?, mediaType: MediaType?, originalName: String?, name: String?, firstAirDate: String?, originCountry: [String]?) {
-    //        self.id = id
-    //        self.video = video
-    //        self.voteCount = voteCount
-    //        self.voteAverage = voteAverage
-    //        self.title = title
-    //        self.releaseDate = releaseDate
-    //        self.languages = originalLanguage
-    //        self.originalTitle = originalTitle
-    //        self.genreIDS = genreIDS
-    //        self.backdropPath = backdropPath
-    //        self.adult = adult
-    //        self.overview = overview
-    //        self.posterPath = posterPath
-    //        self.popularity = popularity
-    //        self.mediaType = mediaType
-    //        self.originalName = originalName
-    //        self.name = name
-    //        self.firstAirDate = firstAirDate
-    //        self.originCountry = originCountry
-    //    }
-    
 }
 
 
@@ -175,4 +148,5 @@ enum OriginalLanguage: String, Codable {
     case ja = "ja"
     case id = "id"
     case zh = "zh"
+    case cn = "cn"
 }
