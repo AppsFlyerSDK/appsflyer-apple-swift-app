@@ -106,6 +106,7 @@ struct MainViewProduction: View {
                     Image(uiImage: UIImage(named: "search50.png")!).resizable().frame(width: 20, height: 20)
                 }))
                     .navigationBarTitle("mopicker", displayMode: .inline)
+                    .navigationBarBackButtonHidden(true)
     }
 }
 
