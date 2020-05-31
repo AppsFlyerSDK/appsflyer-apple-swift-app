@@ -149,17 +149,17 @@ struct SignUpView: View {
                     .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color.white, lineWidth: 1))
             }.padding(.vertical, 64)
             
-            Button(action: signUp) {
-                NavigationLink(destination: SignInView(), isActive: $signUpSuccess) {
-                    Text("Create Account!")
-                    .frame(minWidth: 0,  maxWidth: .infinity)
-                    .frame(height: 50)
-                    .font(.system(size: 14))
-                    .foregroundColor(Color.black)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue]), startPoint: .leading, endPoint: .trailing))
-                    .cornerRadius(5)
-                }
-            }
+            NavigationLink(destination: SignInView(), isActive: $signUpSuccess) {
+                 Button(action: signUp) {
+                                   Text("Create Account!")
+                                   .frame(minWidth: 0,  maxWidth: .infinity)
+                                   .frame(height: 50)
+                                   .font(.system(size: 14))
+                                   .foregroundColor(Color.black)
+                                   .background(LinearGradient(gradient: Gradient(colors: [Color.white, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                                   .cornerRadius(5)
+                           }
+            }.buttonStyle(PlainButtonStyle())
             
             if (!error.isEmpty) {
                 Text(error)
