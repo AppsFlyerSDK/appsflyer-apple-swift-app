@@ -10,5 +10,5 @@ import Foundation
 
 
 struct AppConstants {
-    static var isOpenSource: Bool = false
+    static var isOpenSource: Bool = true
 }
