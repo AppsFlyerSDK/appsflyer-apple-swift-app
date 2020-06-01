@@ -10,7 +10,7 @@ Mopicker is a sample app, that has been written in native Swift programming lang
 
 1) Clone the repository or download it as a .zip archive;
 2) Go to the cloned or unarchived project directory using terminal and run `pod install` command. If this command is unavailable to you, please install Cocoapods dependency manager (https://cocoapods.org/).
-3) To be able to test AppsFlyer SDK, open the `mopicker-sample-app.xcworkspace` file and add your __af_dev_key__ and __af_app_id__ (Appendix 1).
+3) To be able to test AppsFlyer SDK, open the `mopicker-sample-app.xcworkspace` file, go to `Assets/Info.plist` and add your __af_dev_key__ and __af_app_id__ (Appendix 1).
 
 **_Appendix 1_**
 
@@ -20,8 +20,8 @@ Mopicker is a sample app, that has been written in native Swift programming lang
 #### In order to launch the project in full-mode with Firebase authentification and Google Sign-in features, please do the following after completing first three steps: 
 
 4) Create projects in Google and Firebase dashboards to see the data flow in consoles, after launch of full-mode application  (https://firebase.google.com/, https://developers.google.com/identity/sign-in/ios); 
-5) Open the __Info.plist__ file and add your __google_client_id__ and add your __REVERSED_CLIENT_ID__ to the url-scheme as it is described in (https://developers.google.com/identity/sign-in/ios/sdk) in order to activate **Google Sign-In**; 
-6) To enable **Firebase** in the app you should remove existing `GoogleService-Info.plist` file in the project and add your own file to the project navigator, which you will recieve after creating a project in Firebase Console (https://console.firebase.google.com/)(Appendix 2);
+5) Open the __Info.plist__ file and add your __google_client_id__ (Appendix 1) and add your __REVERSED_CLIENT_ID__ to the url-scheme as it is described in (https://developers.google.com/identity/sign-in/ios/sdk) in order to activate **Google Sign-In**; 
+6) To enable **Firebase** in the app you should remove existing `GoogleService-Info.plist` file in `Assets` folder and add your own file to the project navigator, which you will recieve after creating a project in Firebase Console (https://console.firebase.google.com/)(Appendix 2);
 
 
 **_Appendix 2_**
